@@ -8,13 +8,15 @@ This script hits URLs on a tomcat server and prints the % memory usage for that 
  * Create a python virtualenv.
  * Install the dependencies required in the `requirements.txt`.
  * Track down the protocol, hostname, and port of your tomcat server.
- * If necessary, add user to your tomcat with the manager-status role. Get the credentials for this user.
+ * If necessary, add a user to your tomcat with the manager-status role. Get the credentials for this user.
  * Create a file with a bunch of URLs -- one per line. The URLs should be relative to the port of your tomcat server.
+ * By default the script makes one request per URL. You can hit the same URL multiple times by tacking on an additional integer parameter.
  * Now run the script using the information you gathered above.
 
 ```
-python memory_report.py $BASE_URL_FOR_TOMCAT_INSTANCE $TOMCAT_MANAGER_USER $TOMCAT_MANAGER_PASSWORD $PATH_TO_FILE_WITH_RELATIVE_URLS")
+python memory_report.py $BASE_URL_FOR_TOMCAT_INSTANCE $TOMCAT_MANAGER_USER $TOMCAT_MANAGER_PASSWORD $PATH_TO_FILE_WITH_RELATIVE_URLS $OPTIONAL_TIMES_TO_REPEAT_EACH_REQUEST
 ```
+
 
 ### Example:
 
@@ -24,7 +26,7 @@ cd <repo>
 virtualenv env
 . env/bin/activate
 pip install -r requirements.txt
-python memory_report.py http://my-server.com:80 tcAdmin p@ssw0rd my_urls.txt
+python memory_report.py http://my-server.com:80 tcAdmin p@ssw0rd my_urls.txt 42
 ```
 
 Where `my_urls.txt` is a file with contents:
