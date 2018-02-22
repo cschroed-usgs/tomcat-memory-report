@@ -61,14 +61,19 @@ def request_targets(base_url, user, password, relative_urls_file_path, requests_
 
 
 if __name__ == "__main__":
-    if len(sys.argv) < 5:
-        print("Usage: python memory_report.py $BASE_URL_FOR_TOMCAT_INSTANCE $TOMCAT_MANAGER_USER $TOMCAT_MANAGER_PASSWORD $PATH_TO_FILE_WITH_RELATIVE_URLS")
+    if len(sys.argv) < 5 or len(sys.argv) > 6:
+        print("Usage: python memory_report.py $BASE_URL_FOR_TOMCAT_INSTANCE $TOMCAT_MANAGER_USER $TOMCAT_MANAGER_PASSWORD $PATH_TO_FILE_WITH_RELATIVE_URLS $OPTIONAL_TIMES_TO_REPEAT_EACH_REQUEST")
         print("Example Usage:")
-        print("python memory_report.py http://my-server.com:80 tcAdmin p@ssw0rd my_urls.txt")
+        print("python memory_report.py http://my-server.com:80 tcAdmin p@ssw0rd my_urls.txt 42")
         exit(1)
     else:
         base_url = sys.argv[1]
         user = sys.argv[2]
         password = sys.argv[3]
         relative_urls_file_path = sys.argv[4]
-        request_targets(base_url, user, password, relative_urls_file_path, 10)
+        if len(sys.argv) == 6:
+            request_repetition = int(sys.argv[5])
+        else:
+            request_repetition = 1
+
+        request_targets(base_url, user, password, relative_urls_file_path, request_repetition)
