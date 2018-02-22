@@ -26,7 +26,7 @@ cd <repo>
 virtualenv env
 . env/bin/activate
 pip install -r requirements.txt
-python memory_report.py http://my-server.com:80 tcAdmin p@ssw0rd my_urls.txt 42
+python memory_report.py http://my-server.com:80 tcAdmin p@ssw0rd my_urls.txt 2
 ```
 
 Where `my_urls.txt` is a file with contents:
@@ -48,7 +48,13 @@ The output looks like:
 {'overall_request_number': 1,
  'post_request_memory_usage': 0.5736009564748819,
  'response_status_code': 200,
+ 'target_specific_request_number': 1,
+ 'target_url': 'http://my-server.com:80/contextPath/version'}
+{'overall_request_number': 2,
+ 'post_request_memory_usage': 0.5736009564748819,
+ 'response_status_code': 200,
  'target_specific_request_number': 0,
  'target_url': 'http://my-server.com:80/contextPath/favico.ico'}
+...
 ```
 
