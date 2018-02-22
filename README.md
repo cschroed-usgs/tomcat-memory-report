@@ -37,3 +37,18 @@ Where `my_urls.txt` is a file with contents:
 /contextPath/index.jsp
 ```
 
+The output looks like:
+
+```
+{'overall_request_number': 0,
+ 'post_request_memory_usage': 0.5736009564748819,
+ 'response_status_code': 200,
+ 'target_specific_request_number': 0,
+ 'target_url': 'http://my-server.com:80/contextPath/version'}
+{'overall_request_number': 1,
+ 'post_request_memory_usage': 0.5736009564748819,
+ 'response_status_code': 200,
+ 'target_specific_request_number': 0,
+ 'target_url': 'http://my-server.com:80/contextPath/favico.ico'}
+```
+
