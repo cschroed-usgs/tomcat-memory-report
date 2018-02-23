@@ -58,3 +58,18 @@ The output looks like:
 ...
 ```
 
+
+### Simulating Production Requests
+If your tomcat is configured to log basic HTTP request information, you can extract the URLs from your logs.
+
+```
+$> cut -f 7 access_log.2018-02-20.log | grep '^GET' | sed 's/^GET //' | sed 's/ HTTP\/1.1$//' | head -n 5
+/myContextPath/ABC/sos?request=GetObservation&featureId=311909305001
+/myContextPath/DEF/wfs?request=GetFeature&featureId=10
+/myContextPath/GHI/qw?mimeType=xml&siteid=61060851495047
+/myContextPath/JKL/sos?request=GetObservation&featureId=374139
+/myContextPath/MNO/qw?mimeType=xml&siteid=40619700
+```
+
+## Limitations
+ * This script only supports HTTP GET requests.
